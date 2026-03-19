@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fate Servant Guesser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>True Name Guesser</h1>
+    <img id="puzzleImage" onclick="zoomImage(this.src)" title="Click to zoom">
+    
+    <div id="message">Enter the answer below.</div>
+    <input id="answerBox" type="text" placeholder="Type answer">
+    <button onclick="checkAnswer()">Submit</button>
+
+    <div class="controls">
+        <button onclick="toggleEditor()">Toggle Visual Editor</button>
+        <button onclick="exportPuzzleFile()">Export (.json)</button>
+        <button onclick="importPuzzleFile()">Import (.json)</button>
+        <button onclick="resetPuzzle()">Reset</button>
+    </div>
+
+    <div id="editorUI" class="editor-panel" style="display:none;">
+        <h3>Puzzle Creator</h3>
+        <input type="text" id="editImg" placeholder="Main Image URL or Path">
+        <input type="text" id="editAnswers" placeholder="Answers (comma separated)">
+        <hr>
+        <h4>Manage Hints</h4>
+        <div id="hintManagerList"></div> <div class="editor-row">
+            <button class="save-btn" onclick="addNewHintRow()">+ Add New Hint Slot</button>
+        </div>
+        <button class="save-btn" style="background:#27ae60" onclick="applyEditorChanges()">Apply & Save Locally</button>
+    </div>
+
+    <div id="hints"></div>
+</div>
+
+<div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightboxImg">
+</div>
+
+<script src="puzzles.js"></script>
+<script src="script.js"></script>
+<div id="victoryOverlay" onclick="this.style.display='none'">
+    <h2>VICTORY</h2>
+    <p id="victoryName"></p>
+    <img id="victoryImage">
+    <p style="font-size: 1rem; margin-top: 20px; color: #aaa;">Click anywhere to return</p>
+</div>
+<div id="failureOverlay" onclick="this.style.display='none'">
+    <h2 style="color: #ff4444; text-shadow: 0 0 20px #ff4444;">MISSION FAILED</h2>
+    <p>The True Name was:</p>
+    <h3 id="failureAnswer" style="color: var(--primary); font-size: 2rem;"></h3>
+    <img id="failureImage" style="max-width: 70%; border: 2px solid #ff4444; border-radius: 15px;">
+    <p style="font-size: 1rem; margin-top: 20px; color: #aaa;">All hints have been revealed. Click to return.</p>
+</div>
+</body>
+</html>
